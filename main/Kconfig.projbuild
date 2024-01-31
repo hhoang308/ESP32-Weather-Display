@@ -1,0 +1,12 @@
+menu "Example Configuration"
+    config ESP_WIFI_SSID
+        string "Wifi SSID"
+        default "myssid"
+        help 
+            SSID (Network name) for the example to connect
+    config ESP_WIFI_PASSWORD
+        string "Wifi Password"
+        default "mypassword"
+        help
+            Wifi Password for the example to connect
+endmenu
