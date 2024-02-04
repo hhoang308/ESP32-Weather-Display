@@ -8,3 +8,8 @@
  * @copyright Copyright (c) 2024
  * 
  */
+#include "wifi_controller.h"
+
+static void wifi_init_sta(void){
+    
+}
