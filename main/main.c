@@ -2,7 +2,7 @@
 #include "esp_log.h"
 #include "esp_event.h"
 #include "nvs_flash.h"
-
+#include "wifi_controller.h"
 /**
  * @brief It is the main funtion for ESP32-Weather-Display.
  * 
@@ -18,4 +18,5 @@ void app_main(void){
       ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret);
+    wifi_init_sta();
 }

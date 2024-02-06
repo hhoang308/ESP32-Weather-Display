@@ -16,7 +16,7 @@ static void event_handler(void* arg, esp_event_base_t event_base,
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
-        if (s_retry_num < EXAMPLE_ESP_MAXIMUM_RETRY) {
+        if (s_retry_num < ESP_MAXMIMUM_RETRY) {
             esp_wifi_connect();
             s_retry_num++;
             ESP_LOGI(TAG, "retry to connect to the AP");
@@ -58,16 +58,16 @@ static void wifi_init_sta(void){
 
     wifi_config_t wifi_config = {
         .sta = {
-            .ssid = EXAMPLE_ESP_WIFI_SSID,
-            .password = EXAMPLE_ESP_WIFI_PASS,
+            .ssid = ESP_WIFI_SSID,
+            .password = ESP_WIFI_PASS,
             /* Authmode threshold resets to WPA2 as default if password matches WPA2 standards (pasword len => 8).
              * If you want to connect the device to deprecated WEP/WPA networks, Please set the threshold value
              * to WIFI_AUTH_WEP/WIFI_AUTH_WPA_PSK and set the password with length and format matching to
              * WIFI_AUTH_WEP/WIFI_AUTH_WPA_PSK standards.
              */
-            .threshold.authmode = ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD,
-            .sae_pwe_h2e = ESP_WIFI_SAE_MODE,
-            .sae_h2e_identifier = EXAMPLE_H2E_IDENTIFIER,
+            // .threshold.authmode = ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD,
+            // .sae_pwe_h2e = ESP_WIFI_SAE_MODE,
+            // .sae_h2e_identifier = EXAMPLE_H2E_IDENTIFIER,
         },
     };
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA) );

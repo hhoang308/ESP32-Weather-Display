@@ -23,7 +23,7 @@
 
 #define ESP_WIFI_SSID CONFIG_ESP_WIFI_SSID
 #define ESP_WIFI_PASS CONFIG_ESP_WIFI_PASSWORD
-#define ESP_MAXMIMUM_RETRY CONFIG_ESP_MAXIMUM_RETRY
+#define ESP_MAXMIMUM_RETRY 30
 
 #if CONFIG_ESP_WPA3_SAE_PWE_HUNT_AND_PECK
 #define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_HUNT_AND_PECK
@@ -71,6 +71,6 @@ static EventGroupHandle_t s_wifi_event_group;
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 
-void wifi_init_sta(void);
+static void wifi_init_sta(void);
 
 #endif
