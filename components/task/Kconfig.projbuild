@@ -1,0 +1,33 @@
+menu "API Configuration"
+
+    config WEB_SERVER
+        string "Web Server"
+        default "api.darksky.net"
+        help 
+            Web Server to connect and get weather data
+
+    config WEB_PORT
+        int "Web Port"
+        default 443
+        help 
+            Web Server Port to connect and get weather data
+
+    config API_KEY
+        string "API Key"
+        default "d1e8cbd61876b713aec0eeed353e01"
+        help 
+            API Key to Web Server
+
+    config LATITUDE
+        string "Latitude"
+        default "40.653"
+        help 
+            Latitude 
+
+    config LONGITUDE
+        string "Longtitude"
+        default "-73.968"
+        help 
+            Longitude
+
+endmenu
