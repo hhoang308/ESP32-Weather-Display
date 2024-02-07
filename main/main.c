@@ -3,11 +3,13 @@
 #include "esp_event.h"
 #include "nvs_flash.h"
 #include "wifi_controller.h"
+
+static const char* TAG = "main";
+
 /**
  * @brief It is the main funtion for ESP32-Weather-Display.
  * 
  */    
-static const char* TAG = "main";
 
 void app_main(void){
     ESP_LOGD(TAG, "app_main started");
