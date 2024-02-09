@@ -74,7 +74,7 @@ void wifi_init_sta(void){
              */
             .threshold.authmode = ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD,
             .sae_pwe_h2e = ESP_WIFI_SAE_MODE,
-            .sae_h2e_identifier = EXAMPLE_H2E_IDENTIFIER,
+            //.sae_h2e_identifier = H2E_IDENTIFIER, /* error: 'wifi_sta_config_t' {aka 'struct <anonymous>'} has no member named 'sae_h2e_identifier' */
         },
     };
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA) );
@@ -96,6 +96,9 @@ void wifi_init_sta(void){
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
                  ESP_WIFI_SSID, ESP_WIFI_PASS);
+        xTaskCreate(&get_current_weather_task, "get_current_weather_task", 1024 * 20, NULL, 5, &get_current_weather_task_handler);
+        xTaskCreate(&weather_to_display_task, "weather_to_display_task", 1024 * 8, NULL, 5, NULL);
+                 
     } else if (bits & WIFI_FAIL_BIT) {
         ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
                  ESP_WIFI_SSID, ESP_WIFI_PASS);

@@ -25,7 +25,7 @@ menu "Wifi Configuration"
 
     config ESP_WIFI_PW_ID
         string "PASSWORD IDENTIFIER"
-        depends on  ESP_WPA3_SAE_PWE_HASH_TO_ELEMENT|| ESP_WPA3_SAE_PWE_BOTH
+        depends on  ESP_WPA3_SAE_PWE_HASH_TO_ELEMENT || ESP_WPA3_SAE_PWE_BOTH
         default ""
         help
             password identifier for SAE H2E
