@@ -4,6 +4,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
+#include "esp_log.h"
 
 #define WEB_SERVER CONFIG_WEB_SERVER
 #define WEB_PORT CONFIG_WEB_PORT
@@ -18,6 +19,8 @@ typedef struct Forecasts {
     double humidity;
     int pressure;
 } Forecast;
+
+extern TaskHandle_t get_current_weather_task_handler;
 
 void get_current_weather_task(void* pvParameters);
 

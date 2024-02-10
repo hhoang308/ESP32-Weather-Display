@@ -15,7 +15,7 @@ static const char *TAG = "wifi controller";
 static int s_retry_num = 0;
 
 /* FreeRTOS event group to signal when we are connected*/
-static EventGroupHandle_t s_wifi_event_group;
+EventGroupHandle_t s_wifi_event_group;
 
 static void event_handler(void* arg, esp_event_base_t event_base,
                                 int32_t event_id, void* event_data)
@@ -96,9 +96,6 @@ void wifi_init_sta(void){
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
                  ESP_WIFI_SSID, ESP_WIFI_PASS);
-        xTaskCreate(&get_current_weather_task, "get_current_weather_task", 1024 * 20, NULL, 5, &get_current_weather_task_handler);
-        xTaskCreate(&weather_to_display_task, "weather_to_display_task", 1024 * 8, NULL, 5, NULL);
-                 
     } else if (bits & WIFI_FAIL_BIT) {
         ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
                  ESP_WIFI_SSID, ESP_WIFI_PASS);
