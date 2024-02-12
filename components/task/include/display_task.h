@@ -6,6 +6,8 @@
 #include "freertos/event_groups.h"
 #include "esp_log.h"
 
+extern TaskHandle_t get_weather_to_display_handler;
+
 void weather_to_display_task(void* pvParameters);
 
 #endif

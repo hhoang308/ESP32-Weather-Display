@@ -14,7 +14,7 @@ menu "API Configuration"
 
     config API_KEY
         string "API Key"
-        default "d1e8cbd61876b713aec0eeed353e01"
+        default ""
         help 
             API Key to Web Server
 

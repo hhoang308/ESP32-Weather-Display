@@ -5,10 +5,20 @@
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
 #include "esp_log.h"
+#include "wifi_controller.h"
+#include "esp_tls.h"
+#include "mbedtls/platform.h"
+#include "mbedtls/net_sockets.h"
+#include "mbedtls/esp_debug.h"
+#include "mbedtls/ssl.h"
+#include "mbedtls/entropy.h"
+#include "mbedtls/ctr_drbg.h"
+#include "mbedtls/error.h"
+#include "cJSON.h"
 
 #define WEB_SERVER CONFIG_WEB_SERVER
 #define WEB_PORT CONFIG_WEB_PORT
-#define WEB_URL "https://api.darksky.net/forecast/" CONFIG_DARKSKY_API_KEY "/" CONFIG_LATITUDE "," CONFIG_LONGITUDE "?lang=en&exclude=hourly,flag,minutely&units=auto"
+#define WEB_URL "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&appid=" CONFIG_API_KEY "&units=metric"
 
 typedef struct Forecasts {
     time_t time;
@@ -19,6 +29,9 @@ typedef struct Forecasts {
     double humidity;
     int pressure;
 } Forecast;
+
+// const uint8_t server_root_cert_pem_start[] asm("_binary_server_root_cert_pem_start");
+// const uint8_t server_root_cert_pem_end[] asm("_binary_server_root_cert_pem_end");
 
 extern TaskHandle_t get_current_weather_task_handler;
 

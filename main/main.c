@@ -35,7 +35,7 @@ void app_main(void){
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG, "Wifi connected, start task");
         xTaskCreate(&get_current_weather_task, "get_current_weather_task", 1024 * 20, NULL, 5, &get_current_weather_task_handler);
-        xTaskCreate(&weather_to_display_task, "weather_to_display_task", 1024 * 8, NULL, 5, NULL);
+        xTaskCreate(&weather_to_display_task, "weather_to_display_task", 1024 * 8, NULL, 5, &get_weather_to_display_handler);
     } else if (bits & WIFI_FAIL_BIT) {
         ESP_LOGI(TAG, "Wifi failed to connect, do nothing");
     } else {
